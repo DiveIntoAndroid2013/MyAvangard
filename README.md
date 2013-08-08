@@ -1,4 +1,4 @@
 MyAvangard
 ==========
 
-Demo application for funs of Avangard Omsk hockey team
+Demo application for fans of Avangard Omsk hockey team
