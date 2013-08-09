@@ -1,4 +1,4 @@
-package ru.omsu.diveintoandroid.myavangard;
+package ru.omsu.diveintoandroid.myavangard.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+
+import ru.omsu.diveintoandroid.myavangard.R;
 
 public class MatchesActivity extends Activity {
 

@@ -1,9 +1,11 @@
-package ru.omsu.diveintoandroid.myavangard;
+package ru.omsu.diveintoandroid.myavangard.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+
+import ru.omsu.diveintoandroid.myavangard.R;
 
 /**
  * MatchInfoActivity
