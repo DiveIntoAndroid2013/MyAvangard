@@ -12,16 +12,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Match1"
-            android:id="@+id/button"
+            android:id="@+id/match1"
             android:layout_marginBottom="14dp"
-            android:layout_above="@+id/button2"
-            android:layout_alignLeft="@+id/button2"/>
+            android:layout_above="@+id/match2"
+            android:layout_alignLeft="@+id/match2"/>
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Match2"
-            android:id="@+id/button2"
+            android:id="@+id/match2"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
 
@@ -29,8 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Site"
-            android:id="@+id/button3"
-            android:layout_below="@+id/button2"
+            android:id="@+id/site"
+            android:layout_below="@+id/match2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="18dp"/>
 </RelativeLayout>
