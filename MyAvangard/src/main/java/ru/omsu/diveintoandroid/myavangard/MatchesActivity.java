@@ -16,13 +16,17 @@ public class MatchesActivity extends Activity {
         findViewById(R.id.match1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MatchesActivity.this, MatchInfoActivity.class));
+                final Intent intent = new Intent(MatchesActivity.this, MatchInfoActivity.class);
+                intent.putExtra(MatchInfoActivity.INTENT_KEY_MATCH_ID, 1);
+                startActivity(intent);
             }
         });
         findViewById(R.id.match2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MatchesActivity.this, MatchInfoActivity.class));
+                final Intent intent = new Intent(MatchesActivity.this, MatchInfoActivity.class);
+                intent.putExtra(MatchInfoActivity.INTENT_KEY_MATCH_ID, 2);
+                startActivity(intent);
             }
         });
         findViewById(R.id.site).setOnClickListener(new View.OnClickListener() {
