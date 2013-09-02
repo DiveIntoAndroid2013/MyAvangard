@@ -15,11 +15,11 @@ public class MockMatchService implements MatchService {
     public Match getMatch(long matchId) {
         final Match match = new Match();
         match.matchId = matchId;
-        match.team1Name = "Авангард";
-        match.team1Logo = "";
-        match.team2Name = "Динамо";
-        match.team2Logo = "";
-        match.result = "10:0";
+        match.team1Name = "Avangard";
+        match.team1Logo = "http://dl.dropboxusercontent.com/u/4423440/myavangard/logo_avangard.png";
+        match.team2Name = "Dinamo";
+        match.team2Logo = "http://dl.dropboxusercontent.com/u/4423440/myavangard/logo_dinamo.png";
+        match.result = matchId + ":0";
         return match;
     }
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp">
+
+    <TextView
+            android:id="@+id/statistics_field_team1_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="34%"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"/>
+
+
+    <TextView
+            android:id="@+id/statistics_field_team2_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="100%"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+    <TextView
+            android:id="@+id/statistics_field_event_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/statistics_field_team2_result"
+            android:layout_toRightOf="@id/statistics_field_team1_result"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:text="@string/text_statistics_power_play_goals"/>
+
+
+</RelativeLayout>

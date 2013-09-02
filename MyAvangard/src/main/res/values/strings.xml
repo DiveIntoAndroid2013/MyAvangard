@@ -2,7 +2,13 @@
 <resources>
 
     <string name="app_name">My Avangard</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Настройки</string>
+    <string name="text_match_statistic">Статистика матча</string>
+
+    <!--Match statistics-->
+    <string name="text_statistics_shots">Броски по воротам</string>
+    <string name="text_statistics_face_off_won">Выигранные вбрасывания</string>
+    <string name="text_statistics_saves">Отраженные броски</string>
+    <string name="text_statistics_power_play_goals">Шайбы в большинстве</string>
 
 </resources>
