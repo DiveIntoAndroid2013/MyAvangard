@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 import ru.omsu.diveintoandroid.myavangard.R;
 import ru.omsu.diveintoandroid.myavangard.model.Match;
 import ru.omsu.diveintoandroid.myavangard.model.MatchStatistic;
+import ru.omsu.diveintoandroid.myavangard.services.MatchService;
 import ru.omsu.diveintoandroid.myavangard.services.MockMatchService;
 
 /**
@@ -76,46 +77,52 @@ public class MatchInfoActivity extends Activity {
             throw new RuntimeException("intent should have " + INTENT_KEY_MATCH_ID + " parameter");
         }
         final int matchId = getIntent().getIntExtra(INTENT_KEY_MATCH_ID, -1);
-        final MockMatchService mockMatchService = new MockMatchService();
-        mMatch = mockMatchService.getMatch(matchId);
-        mMatchStatistic = mockMatchService.getMatchStatistic(matchId);
+        final MatchService matchService = new MockMatchService();
+        mMatch = matchService.getMatch(matchId);
+        mMatchStatistic = matchService.getMatchStatistic(matchId);
     }
 
     private void prepareUI() {
         setTitle(mMatch.team1Name + " vs " + mMatch.team2Name);
+        prepareHeader();
+        prepareStatistic();
+    }
 
+    private void prepareHeader() {
         final TextView resultTextView = (TextView) findViewById(R.id.match_info_result);
         resultTextView.setText(mMatch.result);
 
-        prepareLogos();
-        
-        prepareField(R.id.match_info_shots, R.string.text_statistics_shots,
+        prepareLogo(R.id.match_info_logo1, mMatch.team1Logo);
+        prepareLogo(R.id.match_info_logo2, mMatch.team2Logo);
+    }
+
+    private void prepareStatistic() {
+        prepareStatisticField(R.id.match_info_shots, R.string.text_statistics_shots,
                 String.valueOf(mMatchStatistic.team1ShotsOnGoal),
                 String.valueOf(mMatchStatistic.team2ShotsOnGoal));
 
-        prepareField(R.id.match_info_saves, R.string.text_statistics_saves,
+        prepareStatisticField(R.id.match_info_saves, R.string.text_statistics_saves,
                 mMatchStatistic.team1SavesPercent + "%",
                 mMatchStatistic.team2SavesPercent + "%");
 
-        prepareField(R.id.match_info_face_off_won, R.string.text_statistics_face_off_won,
+        prepareStatisticField(R.id.match_info_face_off_won, R.string.text_statistics_face_off_won,
                 String.valueOf(mMatchStatistic.team1FaceOffsWon),
                 String.valueOf(mMatchStatistic.team2FaceOffsWon));
 
-        prepareField(R.id.match_info_power_play_goals, R.string.text_statistics_power_play_goals,
+        prepareStatisticField(R.id.match_info_power_play_goals, R.string.text_statistics_power_play_goals,
                 String.valueOf(mMatchStatistic.team1PowerPlayGoals),
                 String.valueOf(mMatchStatistic.team2PowerPlayGoals));
-
     }
 
-    private void prepareLogos() {
-        final ImageView logo1 = (ImageView) findViewById(R.id.match_info_logo1);
-        Picasso.with(this).load(mMatch.team1Logo).into(logo1);
+    private void prepareLogo(int idLogo, String logo) {
+        final ImageView logoImageView = (ImageView) findViewById(idLogo);
+        Picasso.with(this).load(logo).into(logoImageView);
 
         final ImageView logo2 = (ImageView) findViewById(R.id.match_info_logo2);
         Picasso.with(this).load(mMatch.team2Logo).into(logo2);
     }
 
-    private void prepareField(int idField, int idEventTitle, String team1result, String team2result) {
+    private void prepareStatisticField(int idField, int idEventTitle, String team1result, String team2result) {
         final RelativeLayout statisticsField = (RelativeLayout)findViewById(idField);
         ((TextView)statisticsField.findViewById(R.id.statistics_field_event_name)).setText(idEventTitle);
         ((TextView)statisticsField.findViewById(R.id.statistics_field_team1_result)).setText(team1result);

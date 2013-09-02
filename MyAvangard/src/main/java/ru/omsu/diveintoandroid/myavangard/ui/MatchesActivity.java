@@ -10,6 +10,11 @@ import android.view.View;
 
 import ru.omsu.diveintoandroid.myavangard.R;
 
+/**
+ * MatchInfoActivity
+ *
+ * @author Alex Korovyansky <korovyansk@gmail.com>
+ */
 public class MatchesActivity extends Activity {
 
     private static final String TAG = MatchesActivity.class.getSimpleName();
