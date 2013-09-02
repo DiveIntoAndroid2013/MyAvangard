@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import ru.omsu.diveintoandroid.myavangard.R;
 import ru.omsu.diveintoandroid.myavangard.model.Match;
@@ -80,9 +83,12 @@ public class MatchInfoActivity extends Activity {
 
     private void prepareUI() {
         setTitle(mMatch.team1Name + " vs " + mMatch.team2Name);
+
         final TextView resultTextView = (TextView) findViewById(R.id.match_info_result);
         resultTextView.setText(mMatch.result);
 
+        prepareLogos();
+        
         prepareField(R.id.match_info_shots, R.string.text_statistics_shots,
                 String.valueOf(mMatchStatistic.team1ShotsOnGoal),
                 String.valueOf(mMatchStatistic.team2ShotsOnGoal));
@@ -99,6 +105,14 @@ public class MatchInfoActivity extends Activity {
                 String.valueOf(mMatchStatistic.team1PowerPlayGoals),
                 String.valueOf(mMatchStatistic.team2PowerPlayGoals));
 
+    }
+
+    private void prepareLogos() {
+        final ImageView logo1 = (ImageView) findViewById(R.id.match_info_logo1);
+        Picasso.with(this).load(mMatch.team1Logo).into(logo1);
+
+        final ImageView logo2 = (ImageView) findViewById(R.id.match_info_logo2);
+        Picasso.with(this).load(mMatch.team2Logo).into(logo2);
     }
 
     private void prepareField(int idField, int idEventTitle, String team1result, String team2result) {
