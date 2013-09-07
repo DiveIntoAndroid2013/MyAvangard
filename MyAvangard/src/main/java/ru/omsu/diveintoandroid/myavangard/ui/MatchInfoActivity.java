@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import ru.omsu.diveintoandroid.myavangard.R;
 import ru.omsu.diveintoandroid.myavangard.model.Match;
 import ru.omsu.diveintoandroid.myavangard.model.MatchStatistic;
 import ru.omsu.diveintoandroid.myavangard.services.MatchService;
-import ru.omsu.diveintoandroid.myavangard.services.MockMatchService;
+import ru.omsu.diveintoandroid.myavangard.services.RealMatchService;
 
 /**
  * MatchInfoActivity
@@ -77,7 +78,7 @@ public class MatchInfoActivity extends Activity {
             throw new RuntimeException("intent should have " + INTENT_KEY_MATCH_ID + " parameter");
         }
         final long matchId = getIntent().getLongExtra(INTENT_KEY_MATCH_ID, -1);
-        final MatchService matchService = new MockMatchService();
+        final MatchService matchService = new RealMatchService();
         mMatch = matchService.getMatch(matchId);
         mMatchStatistic = matchService.getMatchStatistic(matchId);
     }
@@ -97,21 +98,30 @@ public class MatchInfoActivity extends Activity {
     }
 
     private void prepareStatistic() {
-        prepareStatisticField(R.id.match_info_shots, R.string.text_statistics_shots,
-                String.valueOf(mMatchStatistic.team1ShotsOnGoal),
-                String.valueOf(mMatchStatistic.team2ShotsOnGoal));
+        if (mMatchStatistic != null) {
 
-        prepareStatisticField(R.id.match_info_saves, R.string.text_statistics_saves,
-                mMatchStatistic.team1SavesPercent + "%",
-                mMatchStatistic.team2SavesPercent + "%");
+            findViewById(R.id.match_info_statistic_label).setVisibility(View.VISIBLE);
+            findViewById(R.id.match_info_statistic_layout).setVisibility(View.VISIBLE);
 
-        prepareStatisticField(R.id.match_info_face_off_won, R.string.text_statistics_face_off_won,
-                String.valueOf(mMatchStatistic.team1FaceOffsWon),
-                String.valueOf(mMatchStatistic.team2FaceOffsWon));
+            prepareStatisticField(R.id.match_info_shots, R.string.text_statistics_shots,
+                    String.valueOf(mMatchStatistic.team1ShotsOnGoal),
+                    String.valueOf(mMatchStatistic.team2ShotsOnGoal));
 
-        prepareStatisticField(R.id.match_info_power_play_goals, R.string.text_statistics_power_play_goals,
-                String.valueOf(mMatchStatistic.team1PowerPlayGoals),
-                String.valueOf(mMatchStatistic.team2PowerPlayGoals));
+            prepareStatisticField(R.id.match_info_saves, R.string.text_statistics_saves,
+                    String.format("%.2f", mMatchStatistic.team1SavesPercent) + "%",
+                    String.format("%.2f", mMatchStatistic.team2SavesPercent) + "%");
+
+            prepareStatisticField(R.id.match_info_face_off_won, R.string.text_statistics_face_off_won,
+                    String.valueOf(mMatchStatistic.team1FaceOffsWon),
+                    String.valueOf(mMatchStatistic.team2FaceOffsWon));
+
+            prepareStatisticField(R.id.match_info_power_play_goals, R.string.text_statistics_power_play_goals,
+                    String.valueOf(mMatchStatistic.team1PowerPlayGoals),
+                    String.valueOf(mMatchStatistic.team2PowerPlayGoals));
+        } else {
+            findViewById(R.id.match_info_statistic_label).setVisibility(View.INVISIBLE);
+            findViewById(R.id.match_info_statistic_layout).setVisibility(View.INVISIBLE);
+        }
     }
 
     private void prepareLogo(int idLogo, String logo) {

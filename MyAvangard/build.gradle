@@ -25,4 +25,12 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:13.0.+'
     compile 'com.squareup.picasso:picasso:2.0.0'
+    compile 'com.squareup.retrofit:retrofit:1.2.1'
+    compile('com.stanfy:gson-xml-java:0.1.+') {
+        exclude group: 'xmlpull', module: 'xmlpull'
+    }
+}
+
+tasks.withType(Compile) {
+    options.compilerArgs << "-Xlint:unchecked"
 }

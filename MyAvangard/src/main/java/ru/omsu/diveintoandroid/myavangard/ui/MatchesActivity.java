@@ -15,7 +15,7 @@ import ru.omsu.diveintoandroid.myavangard.R;
 import ru.omsu.diveintoandroid.myavangard.adapters.MatchesAdapter;
 import ru.omsu.diveintoandroid.myavangard.model.Match;
 import ru.omsu.diveintoandroid.myavangard.services.MatchService;
-import ru.omsu.diveintoandroid.myavangard.services.MockMatchService;
+import ru.omsu.diveintoandroid.myavangard.services.RealMatchService;
 
 /**
  * MatchesActivity
@@ -37,7 +37,7 @@ public class MatchesActivity extends Activity {
     }
 
     private void prepareListView() {
-        final MatchService matchService = new MockMatchService();
+        final MatchService matchService = new RealMatchService();
         final ListView matchesListView = (ListView) findViewById(R.id.matches_listview);
         matchesListView.setAdapter(new MatchesAdapter(this, matchService.getMatches()));
         matchesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
