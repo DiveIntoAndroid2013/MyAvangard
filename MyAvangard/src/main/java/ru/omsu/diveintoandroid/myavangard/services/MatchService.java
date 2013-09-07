@@ -1,5 +1,7 @@
 package ru.omsu.diveintoandroid.myavangard.services;
 
+import java.util.List;
+
 import ru.omsu.diveintoandroid.myavangard.model.Match;
 import ru.omsu.diveintoandroid.myavangard.model.MatchStatistic;
 
@@ -23,4 +25,10 @@ public interface MatchService {
      * @return
      */
     public MatchStatistic getMatchStatistic(long matchId);
+
+    /**
+     * Возвращает список матчей
+     * @return
+     */
+    public List<Match> getMatches();
 }

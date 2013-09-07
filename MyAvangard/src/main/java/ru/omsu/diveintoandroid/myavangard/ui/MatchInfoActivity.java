@@ -76,7 +76,7 @@ public class MatchInfoActivity extends Activity {
         if (!intent.hasExtra(INTENT_KEY_MATCH_ID)) {
             throw new RuntimeException("intent should have " + INTENT_KEY_MATCH_ID + " parameter");
         }
-        final int matchId = getIntent().getIntExtra(INTENT_KEY_MATCH_ID, -1);
+        final long matchId = getIntent().getLongExtra(INTENT_KEY_MATCH_ID, -1);
         final MatchService matchService = new MockMatchService();
         mMatch = matchService.getMatch(matchId);
         mMatchStatistic = matchService.getMatchStatistic(matchId);

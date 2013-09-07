@@ -1,5 +1,7 @@
 package ru.omsu.diveintoandroid.myavangard.model;
 
+import java.util.Date;
+
 /**
  * Match
  *
@@ -36,4 +38,9 @@ public class Match {
      * Результат матче в виде <голы хозяев>:<голы гостей>, например, 2:1
      */
     public String result;
+
+    /**
+     * Время встречи (Дата)
+     */
+    public Date time;
 }

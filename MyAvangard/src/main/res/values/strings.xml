@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">My Avangard</string>
-    <string name="action_settings">Настройки</string>
+    <string name="action_site">Сайт команды</string>
     <string name="text_match_statistic">Статистика матча</string>
 
     <!--Match statistics-->
