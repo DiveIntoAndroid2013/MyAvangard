@@ -30,7 +30,3 @@ dependencies {
         exclude group: 'xmlpull', module: 'xmlpull'
     }
 }
-
-tasks.withType(Compile) {
-    options.compilerArgs << "-Xlint:unchecked"
-}
