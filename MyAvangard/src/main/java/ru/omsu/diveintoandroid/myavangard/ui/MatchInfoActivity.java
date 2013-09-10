@@ -22,6 +22,7 @@ import ru.omsu.diveintoandroid.myavangard.services.RealMatchService;
  * MatchInfoActivity
  *
  * @author Alex Korovyansky <korovyansk@gmail.com>
+ * @author Anton Rozhkov <aurozhkov@gmail.com>
  */
 public class MatchInfoActivity extends Activity {
 
@@ -30,6 +31,38 @@ public class MatchInfoActivity extends Activity {
 
     private long mMatchId;
     private GetStatisticTask mGetStatisticTask;
+
+    private class GetStatisticTask extends AsyncTask<Long, Void, GetStatisticTask.Result> {
+
+        class Result {
+            Match match;
+            MatchStatistic matchStatistic;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            findViewById(R.id.match_info_progress).setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Result doInBackground(Long... longs) {
+            final MatchService matchService = new RealMatchService();
+            final Result result = new Result();
+            result.match = matchService.getMatch(longs[0]);
+            result.matchStatistic = matchService.getMatchStatistic(longs[0]);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(Result result) {
+            super.onPostExecute(result);
+            findViewById(R.id.match_info_progress).setVisibility(View.GONE);
+            updateTitle(result.match);
+            updateHeader(result.match);
+            updateStatistics(result.matchStatistic);
+        }
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,34 +164,4 @@ public class MatchInfoActivity extends Activity {
         ((TextView)statisticsField.findViewById(R.id.statistics_field_team2_result)).setText(team2result);
     }
 
-    private class GetStatisticTask extends AsyncTask<Long, Match, MatchStatistic> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            findViewById(R.id.match_info_progress).setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected MatchStatistic doInBackground(Long... longs) {
-            final MatchService matchService = new RealMatchService();
-            final Match match= matchService.getMatch(longs[0]);
-            publishProgress(match);
-            return matchService.getMatchStatistic(longs[0]);
-        }
-
-        @Override
-        protected void onProgressUpdate(Match... matches) {
-            super.onProgressUpdate(matches);
-            updateTitle(matches[0]);
-            updateHeader(matches[0]);
-        }
-
-        @Override
-        protected void onPostExecute(MatchStatistic matchStatistic) {
-            super.onPostExecute(matchStatistic);
-            findViewById(R.id.match_info_progress).setVisibility(View.GONE);
-            updateStatistics(matchStatistic);
-        }
-    }
 }

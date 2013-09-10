@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 
 import java.util.List;
 
@@ -35,30 +34,55 @@ public class MatchesActivity extends Activity {
     private ListView mMatchesListView;
     private GetMatchesTask mGetMatchesTask;
 
+    private class GetMatchesTask extends AsyncTask<String, String, List<Match>> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            findViewById(R.id.matches_progress).setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected List<Match> doInBackground(String... strings) {
+            for (String string : strings) {
+                Log.v(TAG, string);
+            }
+            publishProgress(TAG + " create MatchService");
+            final MatchService matchService = new RealMatchService();
+            publishProgress(TAG + " before getMatches()");
+            final List<Match> matches = matchService.getMatches();
+            publishProgress(TAG + " after getMatches()");
+            return matches;
+        }
+
+        @Override
+        protected void onProgressUpdate(String... strings) {
+            super.onProgressUpdate(strings);
+            for (String string : strings) {
+                Log.v(TAG, string);
+            }
+        }
+
+        @Override
+        protected void onPostExecute(List<Match> matches) {
+            super.onPostExecute(matches);
+            findViewById(R.id.matches_progress).setVisibility(View.GONE);
+            mMatchesListView.setAdapter(new MatchesAdapter(MatchesActivity.this, matches));
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            Log.v(TAG, this.getClass().getSimpleName() + " canceled");
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.v(TAG, "onCreate");
         setContentView(R.layout.activity_matches);
-
         prepareListView();
-    }
-
-    private void prepareListView() {
-        mMatchesListView = (ListView) findViewById(R.id.matches_listview);
-        mMatchesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                final Match selectedMatch = (Match) adapterView.getItemAtPosition(i);
-                goToMatchInfo(selectedMatch.matchId);
-            }
-        });
-    }
-
-    private void goToMatchInfo(long matchId) {
-        final Intent intent = new Intent(MatchesActivity.this, MatchInfoActivity.class);
-        intent.putExtra(MatchInfoActivity.INTENT_KEY_MATCH_ID, matchId);
-        startActivity(intent);
     }
 
     @Override
@@ -123,6 +147,23 @@ public class MatchesActivity extends Activity {
         Log.v(TAG, "onDestroy");
     }
 
+    private void prepareListView() {
+        mMatchesListView = (ListView) findViewById(R.id.matches_listview);
+        mMatchesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                final Match selectedMatch = (Match) adapterView.getItemAtPosition(i);
+                goToMatchInfo(selectedMatch.matchId);
+            }
+        });
+    }
+
+    private void goToMatchInfo(long matchId) {
+        final Intent intent = new Intent(MatchesActivity.this, MatchInfoActivity.class);
+        intent.putExtra(MatchInfoActivity.INTENT_KEY_MATCH_ID, matchId);
+        startActivity(intent);
+    }
+
     private void updateListIfNeed() {
         final ListAdapter adapter = mMatchesListView.getAdapter();
         if (adapter == null || adapter.getCount() == 0) {
@@ -131,46 +172,4 @@ public class MatchesActivity extends Activity {
         }
     }
 
-    private class GetMatchesTask extends AsyncTask<String, String, List<Match>> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            findViewById(R.id.matches_progress).setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected List<Match> doInBackground(String... strings) {
-            for (String string : strings) {
-                Log.v(TAG, string);
-            }
-            publishProgress(TAG + " create MatchService");
-            final MatchService matchService = new RealMatchService();
-            publishProgress(TAG + " before getMatches()");
-            final List<Match> matches = matchService.getMatches();
-            publishProgress(TAG + " after getMatches()");
-            return matches;
-        }
-
-        @Override
-        protected void onProgressUpdate(String... strings) {
-            super.onProgressUpdate(strings);
-            for (String string : strings) {
-                Log.v(TAG, string);
-            }
-        }
-
-        @Override
-        protected void onPostExecute(List<Match> matches) {
-            super.onPostExecute(matches);
-            findViewById(R.id.matches_progress).setVisibility(View.GONE);
-            mMatchesListView.setAdapter(new MatchesAdapter(MatchesActivity.this, matches));
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-            Log.v(TAG, this.getClass().getSimpleName() + " canceled");
-        }
-    }
 }
