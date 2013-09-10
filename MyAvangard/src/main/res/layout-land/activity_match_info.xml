@@ -1,73 +1,89 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="horizontal"
-              android:paddingLeft="16dp"
-              android:paddingRight="16dp"
-              android:paddingTop="16dp"
-              android:paddingBottom="16dp"
-              tools:context=".MatchInfoActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".MatchInfoActivity">
 
     <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="16dp"
-            android:padding="8dp"
-            android:orientation="vertical"
-            android:background="@color/bg_gray">
+        android:id="@+id/match_info_header"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:background="@color/bg_gray"
+        android:visibility="gone">
 
         <ImageView
-                android:id="@+id/match_info_logo1"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:src="@android:color/white"/>
+            android:id="@+id/match_info_logo1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@android:color/white" />
 
         <TextView
-                android:id="@+id/match_info_result"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="0dp"
-                android:textSize="27sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="10:0"
-                android:layout_gravity="center"
-                />
+            android:id="@+id/match_info_result"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="10:0"
+            android:layout_gravity="center" />
 
         <ImageView
-                android:id="@+id/match_info_logo2"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@android:color/white"/>
+            android:id="@+id/match_info_logo2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@android:color/white" />
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/match_info_progress"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
     <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="16dp"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:orientation="vertical"
-            android:background="@color/bg_gray">
+        android:id="@+id/match_info_statistic_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:background="@color/bg_gray"
+        android:visibility="gone">
 
         <include
-                android:id="@+id/match_info_shots"
-                layout="@layout/match_statistics_field"/>
+            android:id="@+id/match_info_shots"
+            layout="@layout/match_statistics_field" />
 
         <include
-                android:id="@+id/match_info_face_off_won"
-                layout="@layout/match_statistics_field"/>
+            android:id="@+id/match_info_face_off_won"
+            layout="@layout/match_statistics_field" />
 
         <include
-                android:id="@+id/match_info_saves"
-                layout="@layout/match_statistics_field"/>
+            android:id="@+id/match_info_saves"
+            layout="@layout/match_statistics_field" />
 
         <include
-                android:id="@+id/match_info_power_play_goals"
-                layout="@layout/match_statistics_field"/>
+            android:id="@+id/match_info_power_play_goals"
+            layout="@layout/match_statistics_field" />
     </LinearLayout>
 
 
