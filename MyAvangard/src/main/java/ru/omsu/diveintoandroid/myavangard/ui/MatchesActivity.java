@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -44,15 +45,20 @@ public class MatchesActivity extends Activity {
 
         @Override
         protected List<Match> doInBackground(String... strings) {
-            for (String string : strings) {
-                Log.v(TAG, string);
+            try {
+                for (String string : strings) {
+                    Log.v(TAG, string);
+                }
+                publishProgress(TAG + " create MatchService");
+                final MatchService matchService = new RealMatchService();
+                publishProgress(TAG + " before getMatches()");
+                final List<Match> matches = matchService.getMatches();
+                publishProgress(TAG + " after getMatches()");
+                return matches;
+            } catch (Exception e) {
+                Log.w(TAG, "exception while running async task", e);
+                return null;
             }
-            publishProgress(TAG + " create MatchService");
-            final MatchService matchService = new RealMatchService();
-            publishProgress(TAG + " before getMatches()");
-            final List<Match> matches = matchService.getMatches();
-            publishProgress(TAG + " after getMatches()");
-            return matches;
         }
 
         @Override
@@ -67,7 +73,11 @@ public class MatchesActivity extends Activity {
         protected void onPostExecute(List<Match> matches) {
             super.onPostExecute(matches);
             findViewById(R.id.matches_progress).setVisibility(View.GONE);
-            mMatchesListView.setAdapter(new MatchesAdapter(MatchesActivity.this, matches));
+            if (matches != null) {
+                mMatchesListView.setAdapter(new MatchesAdapter(MatchesActivity.this, matches));
+            } else {
+                Toast.makeText(MatchesActivity.this, R.string.error_message_async, Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override

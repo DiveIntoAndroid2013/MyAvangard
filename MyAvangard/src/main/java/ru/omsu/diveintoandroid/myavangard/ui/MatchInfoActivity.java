@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -47,20 +48,28 @@ public class MatchInfoActivity extends Activity {
 
         @Override
         protected Result doInBackground(Long... longs) {
-            final MatchService matchService = new RealMatchService();
-            final Result result = new Result();
-            result.match = matchService.getMatch(longs[0]);
-            result.matchStatistic = matchService.getMatchStatistic(longs[0]);
-            return result;
+            try {
+                final MatchService matchService = new RealMatchService();
+                final Result result = new Result();
+                result.match = matchService.getMatch(longs[0]);
+                result.matchStatistic = matchService.getMatchStatistic(longs[0]);
+                return result;
+            } catch (Exception e) {
+                return null;
+            }
         }
 
         @Override
         protected void onPostExecute(Result result) {
             super.onPostExecute(result);
             findViewById(R.id.match_info_progress).setVisibility(View.GONE);
-            updateTitle(result.match);
-            updateHeader(result.match);
-            updateStatistics(result.matchStatistic);
+            if (result != null) {
+                updateTitle(result.match);
+                updateHeader(result.match);
+                updateStatistics(result.matchStatistic);
+            } else {
+                Toast.makeText(MatchInfoActivity.this, R.string.error_message_async, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

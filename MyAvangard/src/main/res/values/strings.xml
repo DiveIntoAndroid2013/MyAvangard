@@ -5,10 +5,11 @@
     <string name="action_site">Сайт команды</string>
     <string name="text_match_statistic">Статистика матча</string>
 
-    <!--Match statistics-->
     <string name="text_statistics_shots">Броски по воротам</string>
     <string name="text_statistics_face_off_won">Выигранные вбрасывания</string>
     <string name="text_statistics_saves">Отраженные броски</string>
     <string name="text_statistics_power_play_goals">Шайбы в большинстве</string>
+
+    <string name="error_message_async">Невозможно загрузить данные. Проверьте настройки сети</string>
 
 </resources>
