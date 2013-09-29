@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="bg_gray">#dedede</color>
+    <color name="border">#B1BCBE</color>
+
+
 </resources>
