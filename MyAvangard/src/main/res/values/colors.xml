@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg_gray">#dedede</color>
+    <color name="bg_gray">#CDCDCD</color>
     <color name="border">#B1BCBE</color>
 
-
+    <color name="list_item_background">#00000000</color>
+    <color name="list_item_pressed">#77B1BCBE</color>
 </resources>

@@ -3,15 +3,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_selector">
 
     <TextView
         android:id="@+id/matches_item_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:padding="16dp"
+        android:layout_marginBottom="8dp"
+        android:singleLine="true"
         android:text="1 сентября"
-        android:textSize="16sp"
+        android:textSize="17sp"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
         android:background="@color/bg_gray"/>
 
 
@@ -42,7 +47,10 @@
                 android:layout_gravity="center"
                 android:text="Name1"
                 android:layout_margin="8dp"
-                android:textSize="18sp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textStyle="italic"
+                android:textSize="17sp"
                 android:gravity="center" />
 
         </LinearLayout>
@@ -53,7 +61,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="27sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:gravity="center"
             android:text="0:0"/>
@@ -78,7 +86,10 @@
                 android:layout_margin="8dp"
                 android:layout_gravity="center"
                 android:text="Name2"
-                android:textSize="18sp"
+                android:textStyle="italic"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="17sp"
                 android:gravity="center"/>
 
         </LinearLayout>

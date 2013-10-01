@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:id="@+id/match_info_header"
-        android:layout_width="wrap_content"
+        android:layout_width="112dp"
         android:layout_height="match_parent"
         android:layout_margin="16dp"
         android:padding="8dp"
@@ -21,27 +21,33 @@
 
         <ImageView
             android:id="@+id/match_info_logo1"
-            android:layout_width="80dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
-            android:src="@android:color/white" />
+            android:scaleType="fitCenter"
+            android:src="@android:color/white"/>
 
         <TextView
             android:id="@+id/match_info_result"
             android:layout_width="wrap_content"
             android:layout_weight="1"
-            android:layout_height="0dp"
+            android:layout_height="40dp"
             android:textSize="27sp"
             android:textStyle="bold"
             android:gravity="center"
             android:text="10:0"
+            android:layout_margin="8dp"
             android:layout_gravity="center" />
 
         <ImageView
             android:id="@+id/match_info_logo2"
-            android:layout_width="80dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:src="@android:color/white" />
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_dinamo" />
 
     </LinearLayout>
 

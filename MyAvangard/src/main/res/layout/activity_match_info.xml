@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/match_info_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="112dp"
         android:layout_margin="16dp"
         android:padding="8dp"
         android:orientation="horizontal"
@@ -22,15 +22,18 @@
         <ImageView
             android:id="@+id/match_info_logo1"
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
             android:layout_gravity="center_vertical"
             android:src="@android:color/white" />
 
         <TextView
             android:id="@+id/match_info_result"
-            android:layout_width="0dp"
+            android:layout_width="40dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:textSize="27sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -40,7 +43,10 @@
         <ImageView
             android:id="@+id/match_info_logo2"
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_vertical"
             android:src="@android:color/white" />
 
     </LinearLayout>
