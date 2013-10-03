@@ -47,7 +47,7 @@
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:layout_gravity="center"
-            android:src="@drawable/logo_dinamo" />
+            android:src="@android:color/white"/>
 
     </LinearLayout>
 

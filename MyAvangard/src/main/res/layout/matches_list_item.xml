@@ -17,7 +17,7 @@
         android:textSize="17sp"
         android:gravity="center_horizontal"
         android:textStyle="bold"
-        android:background="@color/bg_gray"/>
+        android:background="@drawable/bg_texture" />
 
 
     <LinearLayout
@@ -36,9 +36,11 @@
             <ImageView
                 android:id="@+id/matches_item_logo1"
                 android:layout_width="80dp"
+                android:padding="5dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/ic_launcher"
+                android:background="@drawable/bg_rounded_corneres" />
 
             <TextView
                 android:id="@+id/matches_item_team1name"
@@ -59,12 +61,12 @@
             android:id="@+id/matches_item_result"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="fill_parent"
             android:textSize="30sp"
+            android:paddingBottom="32dp"
             android:textStyle="bold"
             android:gravity="center"
-            android:text="0:0"/>
+            android:text="0:0" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -76,8 +78,9 @@
                 android:id="@+id/matches_item_logo2"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:padding="5dp"
                 android:layout_gravity="center"
-                android:src="@drawable/logo_dinamo" />
+                android:background="@drawable/bg_rounded_corneres" />
 
             <TextView
                 android:id="@+id/matches_item_team2name"
@@ -90,7 +93,7 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:textSize="17sp"
-                android:gravity="center"/>
+                android:gravity="center" />
 
         </LinearLayout>
 
