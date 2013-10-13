@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="bg_gray">#CDCDCD</color>
-   <!-- <color name="border">#b4aa9e</color>-->
-    <color name="border">#7f7569</color>
+    <color name="border">#6e6e6e</color>
 
-    <color name="list_item_background">#dcd2c6</color>
-    <!--<color name="list_item_background">#d3c9bd</color>-->
+    <color name="list_item_background">#dadada</color>
 
-    <color name="list_item_pressed">#b7ada1</color>
+    <color name="list_item_pressed">#66999999</color>
 </resources>

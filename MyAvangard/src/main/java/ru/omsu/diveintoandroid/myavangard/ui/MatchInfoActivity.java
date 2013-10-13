@@ -153,8 +153,8 @@ public class MatchInfoActivity extends Activity {
                     String.valueOf(matchStatistic.team2ShotsOnGoal));
 
             updateStatisticField(R.id.match_info_saves, R.string.text_statistics_saves,
-                    String.format("%.2f", matchStatistic.team1SavesPercent) + "%",
-                    String.format("%.2f", matchStatistic.team2SavesPercent) + "%");
+                    String.format("%.1f", matchStatistic.team1SavesPercent) + "%",
+                    String.format("%.1f", matchStatistic.team2SavesPercent) + "%");
 
             updateStatisticField(R.id.match_info_face_off_won, R.string.text_statistics_face_off_won,
                     String.valueOf(matchStatistic.team1FaceOffsWon),
