@@ -3,7 +3,8 @@
     <color name="bg_gray">#CDCDCD</color>
     <color name="border">#6e6e6e</color>
 
-    <color name="list_item_background">#dadada</color>
-
+    <color name="list_item_background">#e1e1e1</color>
     <color name="list_item_pressed">#66999999</color>
+
+    <color name="separator">#dedede</color>
 </resources>

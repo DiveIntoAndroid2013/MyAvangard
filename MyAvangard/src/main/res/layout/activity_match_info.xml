@@ -97,13 +97,31 @@
                 android:id="@+id/match_info_shots"
                 layout="@layout/match_statistics_field" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/separator"
+                android:layout_margin="4dp" />
+
             <include
                 android:id="@+id/match_info_face_off_won"
                 layout="@layout/match_statistics_field" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/separator"
+                android:layout_margin="4dp" />
+
             <include
                 android:id="@+id/match_info_saves"
                 layout="@layout/match_statistics_field" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/separator"
+                android:layout_margin="4dp" />
 
             <include
                 android:id="@+id/match_info_power_play_goals"
